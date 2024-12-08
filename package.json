@@ -1,0 +1,86 @@
+{
+  "name": "cakephp-goto-view",
+  "displayName": "Cakephp goto view",
+  "description": "Quick jump to view",
+  "version": "1.0.0",
+  "publisher": "skie",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "icon": "images/icon.jpg",
+  "repository": "https://github.com/skie/vscode_cakephp_goto_view.git",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "PHP",
+    "CakePHP"
+  ],
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "CakePHP Goto View",
+      "properties": {
+        "cakephp_goto_view.quickJump": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable quick jump to view files"
+        },
+        "cakephp_goto_view.hover": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable hover functionality"
+        },
+        "cakephp_goto_view.maxLinesCount": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum number of lines to search for render calls"
+        },
+        "cakephp_goto_view.enableLogging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable logging for CakePHP Goto View extension"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "cakephp.testCompletion",
+        "title": "CakePHP: Test Completion"
+      },
+      {
+        "command": "cakephp.refreshMaps",
+        "title": "Refresh CakePHP Helper Maps"
+      }
+    ]
+  },
+  "main": "./out/extension.js",
+  "scripts": {
+    "build": "vsce package",
+    "vscode:prepublish": "npm run compile",
+    "increment-version": "node increment-version.js",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "__prebuild": "npm run increment-version",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.50.0",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^8.1.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.3",
+    "typescript": "^4.4.4"
+  }
+}
